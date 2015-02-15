@@ -66,7 +66,7 @@
 %>
  <a href="post.jsp" %>Post</a>
  <br>
- <a href="ofyblog.jsp" %>Home</a>
+ <a href="blog.jsp" %>Home</a>
   </body>
 </html>
  

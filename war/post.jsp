@@ -52,10 +52,9 @@
     }
 %>
 	 
-
- 	<a href="ofyposts.jsp" %>Older Posts</a>
+	<br>
+ 	<a href="posts.jsp" %>Older Posts</a>
 	 <br>
- <a href="ofyblog.jsp" %>Home</a>
+ <a href="blog.jsp" %>Home</a>
   </body>
 </html>
- 

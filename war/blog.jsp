@@ -10,7 +10,11 @@
 <%@ page import="com.google.appengine.api.datastore.FetchOptions" %>
 <%@ page import="com.google.appengine.api.datastore.Key" %>
 <%@ page import="com.google.appengine.api.datastore.KeyFactory" %>
+<%@ page import="com.googlecode.objectify.ObjectifyService" %>
+<%@ page import="blog.Post" %>
+<%@ page import="java.util.Collections" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+ 
 
 <html>
 
@@ -38,38 +42,38 @@
 %>
 <p>Hello!
 <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
-to include your name with greetings you post.</p>
+to include your name with posts you post.</p>
 <%
     }
 %>
  
 <%
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    Key guestbookKey = KeyFactory.createKey("Guestbook", guestbookName);
-    Query query = new Query("Greeting", guestbookKey).addSort("date", Query.SortDirection.DESCENDING);
-    List<Entity> greetings = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(5));
-    if (greetings.isEmpty()) {
+   ObjectifyService.register(Post.class);
+	List<Post> posts = ObjectifyService.ofy().load().type(Post.class).list();   
+	Collections.sort(posts); 
+	
+    if (posts.isEmpty()) {
         %>
-        <p>Guestbook '${fn:escapeXml(guestbookName)}' has no messages.</p>
+        <p>No posts</p>
         <%
     } else {
         %>
-        <p>Messages in Guestbook '${fn:escapeXml(guestbookName)}'.</p>
+        <p>Posts:</p>
         <%
         int i = 0;
-        for (Entity greeting : greetings) {
+        for (Post post : posts) {
         	if(i >4){
         		break;
         	}
         	i++;
-            pageContext.setAttribute("greeting_content",greeting.getProperty("content"));
-            pageContext.setAttribute("greeting_user", greeting.getProperty("user"));
-            pageContext.setAttribute("title",greeting.getProperty("title"));
-            pageContext.setAttribute("date",greeting.getProperty("date"));
+            pageContext.setAttribute("post_content",post.getContent());
+            pageContext.setAttribute("post_user", post.getUser());
+            pageContext.setAttribute("title",post.getTitle());
+            pageContext.setAttribute("date",post.getDate());
             %>
             <font size="5"><b>${fn:escapeXml(title)}:</b></font>
-            <font size="1"><p>by ${fn:escapeXml(greeting_user.nickname)} on ${fn:escapeXml(date)}</p></font>
-            <blockquote>${fn:escapeXml(greeting_content)}</blockquote>
+            <font size="1"><p>by ${fn:escapeXml(post_user.nickname)} on ${fn:escapeXml(date)}</p></font>
+            <blockquote>${fn:escapeXml(post_content)}</blockquote>
              <%
         }
     }
@@ -80,4 +84,3 @@ to include your name with greetings you post.</p>
  
   </body>
 </html>
- 
