@@ -71,10 +71,16 @@ to include your name with posts you post.</p>
             pageContext.setAttribute("title",post.getTitle());
             pageContext.setAttribute("date",post.getDate());
             %>
-            <font size="5"><b>${fn:escapeXml(title)}:</b></font>
-            <font size="1"><p>by ${fn:escapeXml(post_user.nickname)} on ${fn:escapeXml(date)}</p></font>
-            <blockquote>${fn:escapeXml(post_content)}</blockquote>
-             <%
+            <h3>${fn:escapeXml(title)}:</h3>
+            <h4>by ${fn:escapeXml(post_user.nickname)} on ${fn:escapeXml(date)}<h4>
+            <%
+            	String[] text = post.getContent().split("\n");
+            	for(int a = 0; a<text.length; a++){
+            		 pageContext.setAttribute("text",text[a]);
+            		%>
+            			<p>${fn:escapeXml(text)}</p>
+            		<%
+            	}
         }
     }
 %>

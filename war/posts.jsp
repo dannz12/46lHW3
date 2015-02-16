@@ -59,8 +59,14 @@
             %>
             <font size="5"><b>${fn:escapeXml(title)}:</b></font>
             <font size="1"><p>by ${fn:escapeXml(post_user.nickname)} on ${fn:escapeXml(date)}</p></font>
-            <blockquote>${fn:escapeXml(post_content)}</blockquote>
-             <%
+            <%
+            	String[] text = post.getContent().split("\n");
+            	for(int a = 0; a<text.length; a++){
+            		 pageContext.setAttribute("text",text[a]);
+            		%>
+            			<p>${fn:escapeXml(text)}</p>
+            		<%
+            	}
         }
     }
 %>

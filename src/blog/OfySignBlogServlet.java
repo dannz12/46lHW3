@@ -37,7 +37,7 @@ public class OfySignBlogServlet extends HttpServlet {
         
        Post greeting = new Post(user, content, Title);
        
-       ofy().save().entity(greeting);  
+       ofy().save().entity(greeting).now();  
  
         resp.sendRedirect("/blog.jsp" );
     }
