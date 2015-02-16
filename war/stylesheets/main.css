@@ -1,5 +1,64 @@
 
-body {
-   font-family: Verdana, Helvetica, sans-serif;
-   background-color: #FFFFCC;
+html{
+  background:#CEF;
 }
+
+body{
+  font-family:Helvetica, Arial, sans-serif;
+  background-image:linear-gradient(rgba(255,255,255,1.0)  0%, 
+                                   rgba(255,255,255,0.5)  50%,
+                                   rgba(255,255,255,0.15) 80%,
+                                   rgba(255,255,255,0.0)  100%);
+  width:75%;
+  margin:auto;
+  padding:3em;
+  padding-top:5em;
+}
+
+nav{
+  background-color:#CEF;
+  border-bottom:1px solid black;
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:35px;
+  width:100%;
+  text-align:center;
+}
+
+nav a{
+  padding:1.05em;
+  background:#FFF;
+  font-weight: bold;
+}
+
+h1{
+  font-family:"Courier New", monospace;
+}
+
+table,tr,td{
+  border-collapse: collapse;
+  border:2px solid #222;
+}
+
+tr{
+  background-color: #FFF;
+}
+
+tr:nth-child(even){
+  background-color:#CEF;
+}
+
+td{ 
+  padding:0.25em;
+}
+
+a{
+  color: #8ea6b2;
+}
+
+a:visited{
+  color:#233;
+}
+
