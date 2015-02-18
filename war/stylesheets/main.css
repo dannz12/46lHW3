@@ -17,12 +17,13 @@ body{
 
 nav{
   background-color:#CEF;
+  background-image:url("persons.png");
   border-bottom:1px solid black;
   position:fixed;
   top:0px;
   left:0px;
   right:0px;
-  height:35px;
+  height:50px;
   width:100%;
   text-align:center;
 }
@@ -33,8 +34,20 @@ nav a{
   font-weight: bold;
 }
 
+nav a:hover{
+  background:#CEF;
+}
+
 h1{
   font-family:"Courier New", monospace;
+}
+
+h3{
+  color:#8ea6b2;
+}
+
+.author-date{
+  font-weight:bold;
 }
 
 table,tr,td{

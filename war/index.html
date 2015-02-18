@@ -1,58 +1,98 @@
 <!DOCTYPE HTML>
 
 <html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <link type="text/css" rel="stylesheet" href="stylesheets/main.css" />
-    <title>Blog</title>
-  </head>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link type="text/css" rel="stylesheet" href="stylesheets/main.css" />
+  <title>Blog</title>
+</head>
 
-  <body>
-    <nav>
-      <a href="blog.jsp">Home</a>
-      <a href="#">All Posts</a>
-      <a href="#">About</a>
-      <a href="#">Subscribe</a>
-    </nav>
-    <h1>Welcome to (BlogName!)</h1>
-	
-    <h3>${fn:escapeXml(title)}:</h3>
-    <h4>by ${fn:escapeXml(post_user.nickname)} on ${fn:escapeXml(date)}<h5>
+<body>
+  <nav>
+    <a href="blog.jsp">Home</a>
+    <a href="posts.jsp">All Posts</a>
+    <a href="about.html">About</a>
+    <a href="#">Subscribe</a>
+    <a href="#">${fn:escapeXml(user)}</a>
+  </nav>
+  <h1>Welcome to Mockup!</h1>
+
+  <h3>A great title</h3><span class="author-date">by Aaron A Aaronson on July 1st, 1776</span>
+  
+  <p>Proin vitae risus in magna sodales interdum sit amet id tortor. 
+  Nam interdum ultrices congue. Proin dictum orci justo, ac condimentum 
+  mauris suscipit a. Phasellus molestie lectus congue risus faucibus, 
+  sit amet rhoncus dolor congue. Suspendisse finibus, purus non lacinia 
+  consectetur, metus ex varius massa, non convallis risus mauris non 
+  urna. In enim nunc, gravida auctor odio eu, ullamcorper dapibus odio. 
+  Quisque mauris justo, tristique non eros vel, consectetur posuere 
+  quam. Mauris scelerisque tristique urna, eu cursus lacus sollicitudin 
+  vitae. Aliquam ex orci, suscipit ut neque sit amet, blandit luctus 
+  mauris. Vestibulum nec mollis metus, vitae suscipit risus. Quisque 
+  fringilla felis vitae lectus lobortis finibus. Nulla facilisi. 
+  Vestibulum efficitur ligula ligula, vel mollis lorem euismod in. Etiam
+  nec libero elit. Vivamus vitae tempus diam. Nullam vulputate aliquam 
+  elementum.</p>
+
+  <p>In vehicula sodales congue. Nullam elit odio, ultrices a diam vel, 
+  blandit euismod sapien. Pellentesque nisi nunc, consectetur vitae 
+  consectetur eu, malesuada sit amet metus. In nunc nisl, dictum vitae 
+  leo quis, elementum pulvinar sem. Nam ultricies imperdiet condimentum. 
+  Suspendisse sollicitudin urna et turpis ultricies egestas. Pellentesque 
+  vel ligula risus. Aliquam erat volutpat. Donec scelerisque elit elit, 
+  nec hendrerit tellus pharetra eget. Etiam quis dictum mauris. Integer 
+  pulvinar ac tortor cursus tempus.</p>
+  
+  <p>Proin vitae risus in magna sodales interdum sit amet id tortor. 
+  Nam interdum ultrices congue. Proin dictum orci justo, ac condimentum 
+  mauris suscipit a. Phasellus molestie lectus congue risus faucibus, 
+  sit amet rhoncus dolor congue. Suspendisse finibus, purus non lacinia 
+  consectetur, metus ex varius massa, non convallis risus mauris non 
+  urna. In enim nunc, gravida auctor odio eu, ullamcorper dapibus odio. 
+  Quisque mauris justo, tristique non eros vel, consectetur posuere 
+  quam. Mauris scelerisque tristique urna, eu cursus lacus sollicitudin 
+  vitae. Aliquam ex orci, suscipit ut neque sit amet, blandit luctus 
+  mauris. Vestibulum nec mollis metus, vitae suscipit risus. Quisque 
+  fringilla felis vitae lectus lobortis finibus. Nulla facilisi. 
+  Vestibulum efficitur ligula ligula, vel mollis lorem euismod in. Etiam
+  nec libero elit. Vivamus vitae tempus diam. Nullam vulputate aliquam 
+  elementum.</p>
+  
+  
+  <h3>Another great title</h3><span class="author-date">by Zorrp the Destroyer on June 1st, 2088</span>
+  
+  <p>Proin vitae risus in magna sodales interdum sit amet id tortor. 
+  Nam interdum ultrices congue. Proin dictum orci justo, ac condimentum 
+  mauris suscipit a. Phasellus molestie lectus congue risus faucibus, 
+  sit amet rhoncus dolor congue. Suspendisse finibus, purus non lacinia 
+  consectetur, metus ex varius massa, non convallis risus mauris non 
+  urna. In enim nunc, gravida auctor odio eu, ullamcorper dapibus odio. 
+  Quisque mauris justo, tristique non eros vel, consectetur posuere 
+  quam. Mauris scelerisque tristique urna, eu cursus lacus sollicitudin 
+  vitae. Aliquam ex orci, suscipit ut neque sit amet, blandit luctus 
+  mauris. Vestibulum nec mollis metus, vitae suscipit risus. Quisque 
+  fringilla felis vitae lectus lobortis finibus. Nulla facilisi. 
+  Vestibulum efficitur ligula ligula, vel mollis lorem euismod in. Etiam
+  nec libero elit. Vivamus vitae tempus diam. Nullam vulputate aliquam 
+  elementum.</p>
+
+  <p>In vehicula sodales congue. Nullam elit odio, ultrices a diam vel, 
+  blandit euismod sapien. Pellentesque nisi nunc, consectetur vitae 
+  consectetur eu, malesuada sit amet metus. In nunc nisl, dictum vitae 
+  leo quis, elementum pulvinar sem. Nam ultricies imperdiet condimentum. 
+  Suspendisse sollicitudin urna et turpis ultricies egestas. Pellentesque 
+  vel ligula risus. Aliquam erat volutpat. Donec scelerisque elit elit, 
+  nec hendrerit tellus pharetra eget. Etiam quis dictum mauris. Integer 
+  pulvinar ac tortor cursus tempus.</p>
+  <p>In vehicula sodales congue. Nullam elit odio, ultrices a diam vel, 
+  blandit euismod sapien. Pellentesque nisi nunc, consectetur vitae 
+  consectetur eu, malesuada sit amet metus. In nunc nisl, dictum vitae 
+  leo quis, elementum pulvinar sem. Nam ultricies imperdiet condimentum. 
+  Suspendisse sollicitudin urna et turpis ultricies egestas. Pellentesque 
+  vel ligula risus. Aliquam erat volutpat. Donec scelerisque elit elit, 
+  nec hendrerit tellus pharetra eget. Etiam quis dictum mauris. Integer 
+  pulvinar ac tortor cursus tempus.</p>
     
-    <p>Proin vitae risus in magna sodales interdum sit amet id tortor. 
-    Nam interdum ultrices congue. Proin dictum orci justo, ac condimentum 
-    mauris suscipit a. Phasellus molestie lectus congue risus faucibus, 
-    sit amet rhoncus dolor congue. Suspendisse finibus, purus non lacinia 
-    consectetur, metus ex varius massa, non convallis risus mauris non 
-    urna. In enim nunc, gravida auctor odio eu, ullamcorper dapibus odio. 
-    Quisque mauris justo, tristique non eros vel, consectetur posuere 
-    quam. Mauris scelerisque tristique urna, eu cursus lacus sollicitudin 
-    vitae. Aliquam ex orci, suscipit ut neque sit amet, blandit luctus 
-    mauris. Vestibulum nec mollis metus, vitae suscipit risus. Quisque 
-    fringilla felis vitae lectus lobortis finibus. Nulla facilisi. 
-    Vestibulum efficitur ligula ligula, vel mollis lorem euismod in. Etiam
-    nec libero elit. Vivamus vitae tempus diam. Nullam vulputate aliquam 
-    elementum.</p>
-
-    <p>In vehicula sodales congue. Nullam elit odio, ultrices a diam vel, 
-    blandit euismod sapien. Pellentesque nisi nunc, consectetur vitae 
-    consectetur eu, malesuada sit amet metus. In nunc nisl, dictum vitae 
-    leo quis, elementum pulvinar sem. Nam ultricies imperdiet condimentum. 
-    Suspendisse sollicitudin urna et turpis ultricies egestas. Pellentesque 
-    vel ligula risus. Aliquam erat volutpat. Donec scelerisque elit elit, 
-    nec hendrerit tellus pharetra eget. Etiam quis dictum mauris. Integer 
-    pulvinar ac tortor cursus tempus.</p>
-    
-        <table>
-      <tr>
-        <td colspan="2" style="font-weight:bold;">Available Servlets:</td>        
-      </tr>
-      <tr>
-        <td><a href="blog">Blog</a></td>
-      </tr>
-    </table>
-
-  </body>
+  Logged in? <a href="post.jsp" %>Post</a> something!
+</body>
 </html>
-
-

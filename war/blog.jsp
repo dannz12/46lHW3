@@ -19,10 +19,12 @@
 <html>
 
 <head>
-   <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
- </head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link type="text/css" rel="stylesheet" href="stylesheets/main.css" />
+  <title>Blog</title>
+</head>
  
-  <body>
+<body>
  
 <%
     String guestbookName = request.getParameter("guestbookName");
@@ -32,61 +34,55 @@
     pageContext.setAttribute("guestbookName", guestbookName);
     UserService userService = UserServiceFactory.getUserService();
     User user = userService.getCurrentUser();
+%>  
+
+  <nav>
+    <a href="blog.jsp">Home</a>
+    <a href="posts.jsp">All Posts</a>
+    <a href="about.html">About</a>
+    <a href="#">Subscribe</a>
+    <%
     if (user != null) {
       pageContext.setAttribute("user", user);
-%>
-<p>Hello, ${fn:escapeXml(user.nickname)}! (You can
-<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
-<%
-    } else {
-%>
-<p>Hello!
-<a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
-to include your name with posts you post.</p>
-<%
-    }
-%>
+    %>
+    <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">Sign out</a>
+    <%} else {%>
+    <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a><%}%>
+  </nav>
+  <h1>Welcome to Mockup!</h1>
  
 <%
-   ObjectifyService.register(Post.class);
+  ObjectifyService.register(Post.class);
 	List<Post> posts = ObjectifyService.ofy().load().type(Post.class).list();   
 	Collections.sort(posts); 
 	
-    if (posts.isEmpty()) {
-        %>
-        <p>No posts</p>
-        <%
-    } else {
-        %>
-        <p>Posts:</p>
-        <%
-        int i = 0;
-        for (Post post : posts) {
-        	if(i >4){
-        		break;
-        	}
-        	i++;
-            pageContext.setAttribute("post_content",post.getContent());
-            pageContext.setAttribute("post_user", post.getUser());
-            pageContext.setAttribute("title",post.getTitle());
-            pageContext.setAttribute("date",post.getDate());
-            %>
-            <h3>${fn:escapeXml(title)}:</h3>
-            <h4>by ${fn:escapeXml(post_user.nickname)} on ${fn:escapeXml(date)}<h4>
-            <%
-            	String[] text = post.getContent().split("\n");
-            	for(int a = 0; a<text.length; a++){
-            		 pageContext.setAttribute("text",text[a]);
-            		%>
-            			<p>${fn:escapeXml(text)}</p>
-            		<%
-            	}
-        }
-    }
+  if (posts.isEmpty()) {
+    %><p>No posts. :( </p><%
+  } else {
+    int i = 0;
+    for (Post post : posts) {
+      if(i >4){
+        break;
+      }
+      i++;
+      pageContext.setAttribute("post_content",post.getContent());
+      pageContext.setAttribute("post_user", post.getUser());
+      pageContext.setAttribute("title",post.getTitle());
+      pageContext.setAttribute("date",post.getDate());
 %>
-	<a href="post.jsp" %>Post</a>
-	 <br>
- 	<a href="posts.jsp" %>Older Posts</a>
- 
+  <h3>${fn:escapeXml(title)}:</h3>
+  <span class="author-date">by ${fn:escapeXml(post_user.nickname)} on ${fn:escapeXml(date)}</span>
+<%
+      String[] text = post.getContent().split("\n");
+      for(int a = 0; a<text.length; a++){
+        pageContext.setAttribute("text",text[a]);
+%>
+    <p>${fn:escapeXml(text)}</p><%
+      }
+    }
+  }
+%>
+
+	Logged in? <a href="post.jsp" %>Post</a> something! 
   </body>
 </html>

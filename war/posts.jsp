@@ -18,10 +18,12 @@
 <html>
 
 <head>
-   <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
- </head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link type="text/css" rel="stylesheet" href="stylesheets/main.css" />
+  <title>All posts</title>
+</head>
  
-  <body>
+<body>
  
 <%
     String guestbookName = request.getParameter("guestbookName");
@@ -70,9 +72,7 @@
         }
     }
 %>
- <a href="post.jsp" %>Post</a>
- <br>
- <a href="blog.jsp" %>Home</a>
-  </body>
+ <a href="post.jsp" %>Logged in? Post something</a>
+ </body>
 </html>
  
