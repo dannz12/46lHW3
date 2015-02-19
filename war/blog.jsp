@@ -49,7 +49,7 @@
     <%} else {%>
     <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a><%}%>
   </nav>
-  <h1>Welcome to Mockup!</h1>
+  <h1>Welcome to our blog!</h1>
  
 <%
   ObjectifyService.register(Post.class);
@@ -75,7 +75,7 @@
 <%
       String[] text = post.getContent().split("\n");
       for(int a = 0; a<text.length; a++){
-        pageContext.setAttribute("text",text[a]);
+      pageContext.setAttribute("text",text[a]);
 %>
     <p>${fn:escapeXml(text)}</p><%
       }
@@ -84,5 +84,5 @@
 %>
 
 	Logged in? <a href="post.jsp" %>Post</a> something! 
-  </body>
+</body>
 </html>

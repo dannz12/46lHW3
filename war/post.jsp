@@ -15,11 +15,12 @@
 <html>
 
 <head>
-   <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
- </head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link type="text/css" rel="stylesheet" href="stylesheets/main.css" />
+  <title>All posts</title>
+</head>
  
-  <body>
- 
+<body>
 <%
     String guestbookName = request.getParameter("guestbookName");
     if (guestbookName == null) {
@@ -31,30 +32,37 @@
     if (user != null) {
       pageContext.setAttribute("user", user);
 %>
-<p>Hello, ${fn:escapeXml(user.nickname)}! (You can
-<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
+  
+  <nav>
+    <a href="blog.jsp">Home</a>
+    <a href="posts.jsp">All Posts</a>
+    <a href="about.html">About</a>
+    <a href="#">Subscribe</a>
+    <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">Sign out</a>
+  </nav>
 
-    <form action="/sign" method="post">
-    <p>Title:
-    <div><textarea name="title" rows="1" cols="25"></textarea></div>
-    <p>Content 
-      <div><textarea name="content" rows="3" cols="60"></textarea></div>
-      <div><input type="submit" value="Post Message" /></div>
-      <input type="hidden" name="guestbookName" value="${fn:escapeXml(guestbookName)}"/>
-    </form>
+  <form action="/sign" method="post">
+    Title: <input type="text" name="title" /><br />
+    Content: 
+    <textarea name="content" rows="3" cols="60" /><br />
+    <input type="submit" value="Post Message" />
+    <input type="hidden" name="guestbookName" value="${fn:escapeXml(guestbookName)}"/>
+  </form>
 <%
     } else {
 %>
-<p>You can not post unless you are signed in. Please
-<a href="<%= userService.createLoginURL(request.getRequestURI()) %>">sign in</a>
- or return to the home page.
+  <nav>
+    <a href="blog.jsp">Home</a>
+    <a href="posts.jsp">All Posts</a>
+    <a href="about.html">About</a>
+    <a href="#">Subscribe</a>
+    <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">sign in</a>
+  </nav>
+  <p>You can not post unless you are signed in. Please
+  <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">sign in</a>
+  or return to the home page.
 <%
     }
 %>
-	 
-	<br>
- 	<a href="posts.jsp" %>Older Posts</a>
-	 <br>
- <a href="blog.jsp" %>Home</a>
-  </body>
+</body>
 </html>

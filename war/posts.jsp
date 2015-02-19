@@ -24,7 +24,7 @@
 </head>
  
 <body>
- 
+
 <%
     String guestbookName = request.getParameter("guestbookName");
     if (guestbookName == null) {
@@ -33,46 +33,51 @@
     pageContext.setAttribute("guestbookName", guestbookName);
     UserService userService = UserServiceFactory.getUserService();
     User user = userService.getCurrentUser();
+%>  
+
+  <nav>
+    <a href="blog.jsp">Home</a>
+    <a href="posts.jsp">All Posts</a>
+    <a href="about.html">About</a>
+    <a href="#">Subscribe</a>
+    <%
     if (user != null) {
       pageContext.setAttribute("user", user);
-
-%>
+    %>
+    <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">Sign out</a>
+    <%} else {%>
+    <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a><%}%>
+  </nav>
+  <h1>Welcome to our blog! You're reading all posts</h1>
+  
 <%
-    }
-%>
-
-<%
-     ObjectifyService.register(Post.class);
+  ObjectifyService.register(Post.class);
 	List<Post> posts = ObjectifyService.ofy().load().type(Post.class).list();   
 	Collections.sort(posts); 
-    if (posts.isEmpty()) {
-        %>
-        <p>No posts</p>
-        <%
-    } else {
-        %>
-       <p>Posts:</p>
-        <%
-        for (Post post : posts) {
-            pageContext.setAttribute("post_content",post.getContent());
-            pageContext.setAttribute("post_user", post.getUser());
-            pageContext.setAttribute("title",post.getTitle());
-            pageContext.setAttribute("date",post.getDate());
-            %>
-            <font size="5"><b>${fn:escapeXml(title)}:</b></font>
-            <font size="1"><p>by ${fn:escapeXml(post_user.nickname)} on ${fn:escapeXml(date)}</p></font>
-            <%
-            	String[] text = post.getContent().split("\n");
-            	for(int a = 0; a<text.length; a++){
-            		 pageContext.setAttribute("text",text[a]);
-            		%>
-            			<p>${fn:escapeXml(text)}</p>
-            		<%
-            	}
-        }
-    }
+	
+  if (posts.isEmpty()) {
+    %><p>No posts. :( </p><%
+  } else {
+    for (Post post : posts) {
+      pageContext.setAttribute("post_content",post.getContent());
+      pageContext.setAttribute("post_user", post.getUser());
+      pageContext.setAttribute("title",post.getTitle());
+      pageContext.setAttribute("date",post.getDate());
 %>
- <a href="post.jsp" %>Logged in? Post something</a>
- </body>
+    <h3>${fn:escapeXml(title)}:</h3>
+    <span class="author-date">by ${fn:escapeXml(post_user.nickname)} on ${fn:escapeXml(date)}</span>
+<%
+      String[] text = post.getContent().split("\n");
+      for(int a = 0; a<text.length; a++){
+      pageContext.setAttribute("text",text[a]);
+%>
+    <p>${fn:escapeXml(text)}</p><%
+      }
+    }
+  }
+%>
+  Logged in? <a href="post.jsp" %>Post</a> something! 
+</body>
 </html>
+
  
