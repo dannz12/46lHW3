@@ -61,7 +61,7 @@
     for (Post post : posts) {
       pageContext.setAttribute("title",post.getTitle());
     %>
-    <a href="#"+${fn:escapeXml(title)}></a>
+    <a href="#"+${fn:escapeXml(title)}>${fn:escapeXml(title)}</a>
     <%}%>
     
     <%
