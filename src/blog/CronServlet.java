@@ -45,9 +45,9 @@ public class CronServlet extends HttpServlet {
     	  }
       }
       if(rPosts.size() != 0){
-	      String strCallResult = "";;
+	      String strCallResult = "New Posts Today"+ "\r\n";
 	      for(int i = 0; i < rPosts.size(); i++){
-	    	  strCallResult = "this is a test";
+	    	  strCallResult += posts.getTitle()+ "\r\n";
 	      }
 	      
 	      List<Email> emails = ofy().load().type(Email.class).list();

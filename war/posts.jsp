@@ -59,11 +59,20 @@
     %><p>No posts. :( </p><%
   } else {
     for (Post post : posts) {
+      pageContext.setAttribute("title",post.getTitle());
+    %>
+    <a href="#"+${fn:escapeXml(title)}></a>
+    <%}%>
+    
+    <%
+    
+    for (Post post : posts) {
       pageContext.setAttribute("post_content",post.getContent());
       pageContext.setAttribute("post_user", post.getUser());
       pageContext.setAttribute("title",post.getTitle());
       pageContext.setAttribute("date",post.getDate());
 %>
+    <a id=${fn:escapeXml(title)}></a>
     <h3>${fn:escapeXml(title)}:</h3>
     <span class="author-date">by ${fn:escapeXml(post_user.nickname)} on ${fn:escapeXml(date)}</span>
 <%
