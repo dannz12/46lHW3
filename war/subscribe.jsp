@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.LinkedList" %>
 <%@ page import="com.google.appengine.api.users.User" %>
 <%@ page import="com.google.appengine.api.users.UserService" %>
 <%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
@@ -12,6 +13,8 @@
 <%@ page import="com.google.appengine.api.datastore.KeyFactory" %>
 <%@ page import="com.googlecode.objectify.ObjectifyService" %>
 <%@ page import="static com.googlecode.objectify.ObjectifyService.ofy"%>
+<%@ page import="blog.Email" %>
+
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
@@ -46,23 +49,23 @@
   <h1>Welcome to our blog! Subscribe</h1>
   
 <%
-      List<Email> emails = ObjectifyService.ofy().load().type(Email.class).list();  
+		ObjectifyService.register(Email.class);
+		List<Email> emails = ObjectifyService.ofy().load().type(Email.class).list();   
+     
       boolean inList=false;
       
       for (Email e : emails) {
-        if (e == user.getNickname()){inList=true;}
+        if (e.getEmail().equals(user.getEmail())){inList=true;}
       }  
       if(!inList){ 
 %>
     <h3>Subscribe</h3>
-    <form action="/email" method="sub">
-      Email: <input type="email" name="email" /><br />
+    <form action="/email" method="post">
       <input type="submit" value="Subscribe" />
     </form>
   <%} else {%>
     <h3>Unsubscribe</h3>
-    <form action="/email" method="unsub">
-      Email: <input type="email" name="email" /><br />
+    <form action="/unsub" method="post">
       <input type="submit" value="Unsubscribe" />
     </form>
   <%}%> 

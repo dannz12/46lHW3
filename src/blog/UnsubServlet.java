@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class EmailServlet extends HttpServlet{
+public class UnsubServlet extends HttpServlet{
 	static {
         ObjectifyService.register(Post.class);
         ObjectifyService.register(Email.class);
@@ -33,11 +33,16 @@ public class EmailServlet extends HttpServlet{
     	
     	UserService userService = UserServiceFactory.getUserService();
 	    User user = userService.getCurrentUser();
-	      
-	    Email email = new Email(user.getEmail());
-	    
+
+	    List<Email> emails = ObjectifyService.ofy().load().type(Email.class).list();
+	    Email email = null;
+	    for(int i = 0; i < emails.size(); i++){
+	    	if(emails.get(i).getEmail().equals(user.getEmail())){
+	    		email = emails.get(i);
+	    	}
+	    }
 	     
-	    ofy().save().entity(email).now();  
+	    ofy().delete().entity(email).now();  
 	
 	    resp.sendRedirect("/blog.jsp" );
     }

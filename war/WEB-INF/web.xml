@@ -30,14 +30,22 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
     <servlet-name>email</servlet-name>
     <url-pattern>/email</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>unsub</servlet-name>
+    <servlet-class>blog.UnsubServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>unsub</servlet-name>
+    <url-pattern>/unsub</url-pattern>
+  </servlet-mapping>
     
   <servlet>
-    <servlet-name>cron</servlet-name>
+    <servlet-name>recache</servlet-name>
     <servlet-class>blog.CronServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>cron</servlet-name>
-    <url-pattern>/cron</url-pattern>
+    <servlet-name>recache</servlet-name>
+    <url-pattern>/recache</url-pattern>
   </servlet-mapping>
   
   

@@ -17,26 +17,33 @@ import java.util.Date;
  
 
 
+import java.util.LinkedList;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.util.List;
  
 public class OfySignBlogServlet extends HttpServlet {
 	static {
         ObjectifyService.register(Post.class);
+        ObjectifyService.register(Email.class);
+
     }
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         UserService userService = UserServiceFactory.getUserService();
         User user = userService.getCurrentUser();
         
-        String guestbookName = req.getParameter("guestbookName");
-        Key guestbookKey = KeyFactory.createKey("Guestbook", guestbookName);
         String Title = req.getParameter("title");
         String content = req.getParameter("content");
         Date date = new Date();
         
        Post greeting = new Post(user, content, Title);
-       System.out.println(user.getNickname());
+       List<Email> posts = ObjectifyService.ofy().load().type(Email.class).list();  
+       for(int i = 0; i < posts.size(); i++){
+    	   System.out.println(posts.get(i).getEmail());
+       }
        ofy().save().entity(greeting).now();  
  
         resp.sendRedirect("/blog.jsp" );

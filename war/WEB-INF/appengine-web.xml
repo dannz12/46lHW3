@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
-  <application>zelada-gao-hw3</application>
+  <application>zelada-test</application>
   <version>1</version>
 
   <!--
     Allows App Engine to send multiple requests to one instance in parallel:
   -->
+  <sessions-enabled>true</sessions-enabled>
   <threadsafe>true</threadsafe>
 
   <!-- Configure java.util.logging -->
@@ -27,5 +28,9 @@
     stale session data. For details, see
     http://code.google.com/appengine/docs/java/config/appconfig.html#Enabling_Sessions
   -->
+  <inbound-services>
+		<service>xmpp_message</service>
+		<service>mail</service> 
+	</inbound-services> 
 
 </appengine-web-app>

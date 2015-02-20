@@ -45,7 +45,7 @@
   <form action="/sign" method="post">
     Title: <input type="text" name="title" /><br />
     Content: 
-    <textarea name="content" rows="3" cols="60" /><br />
+    <textarea name="content" rows="3" cols="60" ></textarea><br />
     <input type="submit" value="Post Message" />
   </form>
 <%
@@ -55,7 +55,7 @@
     <a href="blog.jsp">Home</a>
     <a href="posts.jsp">All Posts</a>
     <a href="about.html">About</a>
-    <a href="#">Subscribe</a>
+    <a href="subscribe.jsp">Subscribe</a>
     <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">sign in</a>
   </nav>
   <p>You can not post unless you are signed in. Please

@@ -39,7 +39,7 @@
     <a href="blog.jsp">Home</a>
     <a href="posts.jsp">All Posts</a>
     <a href="about.html">About</a>
-    <a href="#">Subscribe</a>
+    <a href="subscribe.jsp">Subscribe</a>
     <%
     if (user != null) {
       pageContext.setAttribute("user", user);
