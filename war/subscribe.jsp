@@ -10,7 +10,10 @@
 <%@ page import="com.google.appengine.api.datastore.FetchOptions" %>
 <%@ page import="com.google.appengine.api.datastore.Key" %>
 <%@ page import="com.google.appengine.api.datastore.KeyFactory" %>
+<%@ page import="com.googlecode.objectify.ObjectifyService" %>
+<%@ page import="static com.googlecode.objectify.ObjectifyService.ofy"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <html>
 
@@ -47,7 +50,7 @@
       boolean inList=false;
       
       for (Email e : emails) {
-        if e = user.getNickname(){inList=true;}
+        if (e == user.getNickname()){inList=true;}
       }  
       if(!inList){ 
 %>
