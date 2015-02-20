@@ -20,26 +20,21 @@ import java.util.Date;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
- 
-public class OfySignBlogServlet extends HttpServlet {
+
+public class EmailServlet {
 	static {
         ObjectifyService.register(Post.class);
     }
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        UserService userService = UserServiceFactory.getUserService();
-        User user = userService.getCurrentUser();
-        
-        String guestbookName = req.getParameter("guestbookName");
-        Key guestbookKey = KeyFactory.createKey("Guestbook", guestbookName);
-        String Title = req.getParameter("title");
-        String content = req.getParameter("content");
-        Date date = new Date();
-        
-       Post greeting = new Post(user, content, Title);
-       System.out.println(user.getNickname());
-       ofy().save().entity(greeting).now();  
- 
-        resp.sendRedirect("/blog.jsp" );
+    	UserService userService = UserServiceFactory.getUserService();
+	    User user = userService.getCurrentUser();
+	      
+	    Email email = new Email(user.getNickname());
+	     
+	    ofy().save().entity(email).now();  
+	
+	    resp.sendRedirect("/blog.jsp" );
     }
     
+
 }
