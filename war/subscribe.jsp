@@ -19,8 +19,8 @@
   <link type="text/css" rel="stylesheet" href="stylesheets/main.css" />
   <title>All posts</title>
 </head>
- 
 <body>
+ 
 <%
     String guestbookName = request.getParameter("guestbookName");
     if (guestbookName == null) {
@@ -29,38 +29,23 @@
     pageContext.setAttribute("guestbookName", guestbookName);
     UserService userService = UserServiceFactory.getUserService();
     User user = userService.getCurrentUser();
+%>  
+
+  <nav>
+    <a href="blog.jsp">Home</a>
+    <a href="posts.jsp">All Posts</a>
+    <a href="about.html">About</a>
+    <a href="#">Subscribe</a>
+    <%
     if (user != null) {
       pageContext.setAttribute("user", user);
-%>
-  
-  <nav>
-    <a href="blog.jsp">Home</a>
-    <a href="posts.jsp">All Posts</a>
-    <a href="about.html">About</a>
-    <a href="#">Subscribe</a>
+    %>
     <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">Sign out</a>
+    <%} else {%>
+    <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a><%}%>
   </nav>
-  <h1>Welcome to our blog! Post something</h1>
+  <h1>Welcome to our blog!</h1>
   
-  <form action="/sign" method="post">
-    Title: <input type="text" name="title" /><br />
-    Content: 
-    <textarea name="content" rows="3" cols="60" /><br />
-    <input type="submit" value="Post Message" />
-    <input type="hidden" name="guestbookName" value="${fn:escapeXml(guestbookName)}"/>
-  </form>
-<%
-    } else {
-%>
-  <nav>
-    <a href="blog.jsp">Home</a>
-    <a href="posts.jsp">All Posts</a>
-    <a href="about.html">About</a>
-    <a href="#">Subscribe</a>
-    <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">sign in</a>
-  </nav>
-<%
-    }
-%>
+  
 </body>
 </html>
