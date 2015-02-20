@@ -47,7 +47,6 @@
     Content: 
     <textarea name="content" rows="3" cols="60" /><br />
     <input type="submit" value="Post Message" />
-    <input type="hidden" name="guestbookName" value="${fn:escapeXml(guestbookName)}"/>
   </form>
 <%
     } else {
@@ -59,6 +58,9 @@
     <a href="#">Subscribe</a>
     <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">sign in</a>
   </nav>
+  <p>You can not post unless you are signed in. Please
+  <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">sign in</a>
+  or return to the home page.
 <%
     }
 %>

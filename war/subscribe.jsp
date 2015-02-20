@@ -19,8 +19,8 @@
   <link type="text/css" rel="stylesheet" href="stylesheets/main.css" />
   <title>All posts</title>
 </head>
-<body>
  
+<body>
 <%
     String guestbookName = request.getParameter("guestbookName");
     if (guestbookName == null) {
@@ -29,23 +29,56 @@
     pageContext.setAttribute("guestbookName", guestbookName);
     UserService userService = UserServiceFactory.getUserService();
     User user = userService.getCurrentUser();
-%>  
-
+    if (user != null) {
+      pageContext.setAttribute("user", user);
+%>
+  
   <nav>
     <a href="blog.jsp">Home</a>
     <a href="posts.jsp">All Posts</a>
     <a href="about.html">About</a>
     <a href="#">Subscribe</a>
-    <%
-    if (user != null) {
-      pageContext.setAttribute("user", user);
-    %>
     <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">Sign out</a>
-    <%} else {%>
-    <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a><%}%>
   </nav>
-  <h1>Welcome to our blog!</h1>
+  <h1>Welcome to our blog! Subscribe</h1>
   
+<%
+      List<Email> emails = ObjectifyService.ofy().load().type(Email.class).list();  
+      boolean inList=false;
+      
+      for (Email e : emails) {
+        if e = user.getNickname(){inList=true;}
+      }  
+      if(!inList){ 
+%>
+    <h3>Subscribe</h3>
+    <form action="/email" method="sub">
+      Email: <input type="email" name="email" /><br />
+      <input type="submit" value="Subscribe" />
+    </form>
+  <%} else {%>
+    <h3>Unsubscribe</h3>
+    <form action="/email" method="unsub">
+      Email: <input type="email" name="email" /><br />
+      <input type="submit" value="Unsubscribe" />
+    </form>
+  <%}%> 
+<%
+    } else {
+%>
+  <nav>
+    <a href="blog.jsp">Home</a>
+    <a href="posts.jsp">All Posts</a>
+    <a href="about.html">About</a>
+    <a href="#">Subscribe</a>
+    <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">sign in</a>
+  </nav>
+  <p>You can not subscribe unless you are signed in. Please
+  <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">sign in</a>
+  or return to the home page.
+<%
+    }
+%> 
   
 </body>
 </html>
