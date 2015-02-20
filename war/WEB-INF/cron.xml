@@ -4,5 +4,6 @@
     <url>/recache</url>
     <description>Repopulate the cache every 2 minutes</description>
     <schedule>every day 17:00</schedule>
+    <timezone>America/Chicago</timezone>
   </cron>
 </cronentries>

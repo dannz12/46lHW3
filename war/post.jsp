@@ -43,8 +43,10 @@
   <h1>Welcome to our blog! Post something</h1>
   
   <form action="/sign" method="post">
-    Title: <input type="text" name="title" /><br />
+    Title:<br>
+    <input type="text" name="title" /><br />
     Content: 
+    <br>
     <textarea name="content" rows="3" cols="60" ></textarea><br />
     <input type="submit" value="Post Message" />
   </form>

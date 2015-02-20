@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.Date;
 import java.util.Properties;
+import java.util.Collections;
 
 
 
@@ -38,23 +39,26 @@ public class CronServlet extends HttpServlet {
 	  _logger.info("Cronhas been executed");
 	  System.out.println("test");
     try {
-    	 _logger.info("Cronhas been executed3");
+    	 
       List<Post> posts = ofy().load().type(Post.class).list();
       List<Post> rPosts = new LinkedList<Post>();
+      Collections.sort(posts); 
       Date date = new Date();
-      date.setTime(86400000);
+      date.setTime(date.getTime() - 86400000);
+
       for(int i = 0; i < posts.size(); i++){
-    	  if(posts.get(i).getDate().compareTo(date)>0){
+    	  if(posts.get(i).getDate().getTime()>date.getTime()){
     		  rPosts.add(posts.get(i));
     	  }
     	  else{
     		  break;
     	  }
       }
+      _logger.info(rPosts.size()+ "");
       if(rPosts.size() != 0){
-	      String strCallResult = "New Posts Today"+ "\r\n";
+	      String strCallResult = "New Posts Today"+ "\r\n\n\n";
 	      for(int i = 0; i < rPosts.size(); i++){
-	    	  strCallResult += rPosts.get(i).getTitle()+ "\r\n";
+	    	  strCallResult += rPosts.get(i).getTitle()+ "\r\n\n";
 	      }
 	      
 	      List<Email> emails = ofy().load().type(Email.class).list();
